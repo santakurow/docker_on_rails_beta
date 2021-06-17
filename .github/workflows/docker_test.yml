@@ -26,6 +26,10 @@ jobs:
           gem 'dotenv-rails'
           EOF
 
+      - name: Bundle Install
+        run: |
+          docker-compose run app bundle install
+
       - name: Rails Setup
         run: |
           docker-compose run app rails app:template LOCATION=./init.rb

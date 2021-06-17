@@ -17,7 +17,7 @@ gem 'rubocop-rails', require: false
 gem 'dotenv-rails'
 EOF
 
-echo "<================== Add Gemfile ==================>"
+echo "<================== Bundle Install ==================>"
 docker-compose run --rm app bundle install
 
 echo "<================== Rails Setup ==================>"
