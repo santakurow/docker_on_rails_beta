@@ -6,28 +6,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Build
         run: |
           docker-compose build
+
       - name: Rails New
         run: |
           docker-compose run app rails new . -d mysql -T
+
+      - name: Add Gemfile
+        run: |
+          cat >> Gemfile << EOF
+          group :development, :test do
+            gem 'rspec-rails'
+          end
+
+          gem 'rubocop-rails', require: false
+          gem 'dotenv-rails'
+          EOF
+
       - name: Rails Setup
         run: |
           docker-compose run app rails app:template LOCATION=./init.rb
+
       - name: DB Create
         run: |
           docker-compose run app rails db:create
         env:
           RAILS_ENV: test
+
       - name: Run RSpec
         run: |
           docker-compose run app rspec
         env:
           RAILS_ENV: test
+
       - name: Compose Up
         run: |
           docker-compose up -d
+
       - name: Compose Down
         run: |
           docker-compose down

@@ -7,6 +7,19 @@ docker-compose build
 echo "<================== Rails New ==================>"
 docker-compose run --rm app rails new . -d mysql -T
 
+echo "<================== Add Gemfile ==================>"
+cat >> Gemfile << EOF
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+gem 'rubocop-rails', require: false
+gem 'dotenv-rails'
+EOF
+
+echo "<================== Add Gemfile ==================>"
+docker-compose run --rm app bundle install
+
 echo "<================== Rails Setup ==================>"
 docker-compose run --rm app rails app:template LOCATION=./init.rb
 
