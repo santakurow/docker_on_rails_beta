@@ -1,0 +1,10 @@
+version: "2"
+
+volumes:
+  web-volume:
+    external: true
+
+services:
+  web:
+    volumes:
+      - web-volume:/myapp

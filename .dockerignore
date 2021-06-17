@@ -1,0 +1,7 @@
+.git
+.rspec
+.rubocop.yml
+.env
+/log
+/tmp
+/node_modules
