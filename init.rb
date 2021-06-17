@@ -15,10 +15,12 @@ application do
 end
 
 gsub_file 'config/database.yml', "username: root", 
-          "username: <%= ENV.fetch('MYSQL_USERNAME', root) %>"
+          "username: <%= ENV.fetch('MYSQL_USERNAME', 'root') %>"
 
 gsub_file 'config/database.yml', /password:$/, 
-          "password: <%= ENV.fetch('MYSQL_PASSWORD', password) %>"
+          "password: <%= ENV.fetch('MYSQL_PASSWORD', 'password') %>"
 
 gsub_file 'config/database.yml', "host: localhost", 
-          "host: <%= ENV.fetch('MYSQL_HOST', db) %>"
+          "host: <%= ENV.fetch('MYSQL_HOST', 'db') %>"
+
+run "cat config/database.yml"
