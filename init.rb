@@ -22,5 +22,3 @@ gsub_file 'config/database.yml', /password:$/,
 
 gsub_file 'config/database.yml', "host: localhost", 
           "host: <%= ENV.fetch('MYSQL_HOST', 'db') %>"
-
-run "cat config/database.yml"
