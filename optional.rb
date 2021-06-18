@@ -11,6 +11,5 @@ if yes?('デフォルトでcss(sass)をwebpackで管理するように設定し�
 
   run 'mkdir -p app/javascript/stylesheets && touch app/javascript/stylesheets/application.scss'
 
-  inject_into_file 'app/javascript/packs/application.js', "import '../stylesheets/application'\n",
-                   before: /^Rails.start()/
+  append_to_file 'app/javascript/packs/application.js', "import '../stylesheets/application'\n",
 end
