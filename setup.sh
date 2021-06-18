@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e
 
+mv README.md README.md.tmp
+
 echo "<================== Build ==================>" 
 docker-compose build
 
 echo "<================== Rails New ==================>"
-docker-compose run --rm app rails new . -d mysql -T
+docker-compose run --rm app rails new . -d mysql -fT
 
 echo "<================== Add Gemfile ==================>"
 cat >> Gemfile << EOF
@@ -32,6 +34,11 @@ cat >> .gitignore << EOF
 EOF
 
 echo "--format documentation" >> .rspec
+
+echo "<================== Update README.md ==================>"
+
+rm -f README.md
+mv README.md.tmp README.md
 
 echo "<================== DB Create ==================>"
 docker-compose run --rm app rails db:create

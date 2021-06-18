@@ -7,13 +7,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Escape README
+        run: |
+          mv README.md README.md.tmp
+
       - name: Build
         run: |
           docker-compose build
 
       - name: Rails New
         run: |
-          docker-compose run app rails new . -d mysql -T
+          docker-compose run app rails new . -d mysql -fT
 
       - name: Add Gemfile
         run: |
@@ -45,6 +49,13 @@ jobs:
           docker-compose run app rspec
         env:
           RAILS_ENV: test
+
+      - name: Reverse README
+        run: |
+          rm -f README.md
+          mv README.md.tmp README.md
+
+          cat README.md
 
       - name: Compose Up
         run: |
