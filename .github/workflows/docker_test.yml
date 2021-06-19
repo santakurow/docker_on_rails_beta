@@ -19,20 +19,20 @@ jobs:
         run: |
           docker-compose run app rails new . -d mysql -fT
 
-      - name: Add Gemfile
-        run: |
-          cat >> Gemfile << EOF
-          group :development, :test do
-            gem 'rspec-rails'
-          end
+      # - name: Add Gemfile
+      #   run: |
+      #     cat >> Gemfile << EOF
+      #     group :development, :test do
+      #       gem 'rspec-rails'
+      #     end
 
-          gem 'rubocop-rails', require: false
-          gem 'dotenv-rails'
-          EOF
+      #     gem 'rubocop-rails', require: false
+      #     gem 'dotenv-rails'
+      #     EOF
 
-      - name: Bundle Install
-        run: |
-          docker-compose run app bundle install
+      # - name: Bundle Install
+      #   run: |
+      #     docker-compose run app bundle install
 
       - name: Rails Setup
         run: |
