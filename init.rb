@@ -4,6 +4,8 @@ end
 gem 'rubocop-rails', require: false
 gem 'dotenv-rails'
 
+run "cat Gemfile"
+
 run "bundle install"
 
 generate "rspec:install"
