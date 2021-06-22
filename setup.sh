@@ -43,4 +43,4 @@ mv README.md.tmp README.md
 echo "<================== DB Create ==================>"
 docker-compose run --rm app rails db:create
 
-echo "Complete! Let's 'docker-compose up'!"
+echo "Complete! docker setup"
